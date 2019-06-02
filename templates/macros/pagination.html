@@ -1,0 +1,24 @@
+{% macro pagination(obj, pageUrl) %}
+    {%if obj.total > 10%}
+    <div class="box-footer clearfix">
+      <ul class="pagination pagination-sm no-margin pull-right">
+      {% if obj.has_prev %}
+      <li><a href="/{{pageUrl}}/{{obj.prev_num}}">&laquo;</a></li>
+      {% endif %}
+
+      {% for p in range(obj.pages) %}
+        {% if p+1 == clients.page %}
+            <li class="active"><a href="/{{pageUrl}}/{{p +1}}">{{p+1}}</a></li>
+        {% else: %}
+            <li><a href="/{{pageUrl}}/{{p +1}}">{{p+1}}</a></li>
+        {% endif %}
+
+      {% endfor %}
+
+      {% if obj.has_next %}
+        <li><a href="/{{pageUrl}}/{{obj.next_num}}">&raquo;</a></li>
+      {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,45 @@
+{% extends 'layouts/public.html' %}
+
+{% block content %}
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Alterar senha</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form action="/changepass" role="form" method="POST">
+    {{ form.csrf_token }}
+    <div class="box-body">
+
+
+
+      <div class="form-group has-feedback">
+
+          {% if form.errors %}
+            <ul class=errors>
+            {% for error in form.errors %}
+              <li>{{ error }} - {{ form.errors[error] }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+      </div>
+
+
+      <div class="form-group">
+        <label for="start_of_contract">Senha</label>
+        {{ form.password(id='password', class="form-control", placeholder="Senha", required="disable") }}
+      </div>
+
+      <div class="form-group">
+        <label for="start_of_contract">Confirmação de senha</label>
+        {{ form.confirmpassword(id='confirmpassword', class="form-control", placeholder="Confirmação de senha", required="disable") }}
+      </div>
+    </div>
+    <!-- /.box-body -->
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

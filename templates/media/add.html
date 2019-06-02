@@ -1,0 +1,27 @@
+{% extends 'layouts/wrapper.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename="dropzone/dropzone.min.css")}}">
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">Enviar fotos</h3>
+		</div>
+
+        <form action="/media/upload" class="dropzone">
+          <div class="fallback">
+            <input name="file" type="file" multiple />
+          </div>
+        </form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{url_for('static', filename="dropzone/dropzone-amd-module.min.js")}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename="dropzone/dropzone.min.js")}}"></script>
+{% endblock %}

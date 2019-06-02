@@ -1,0 +1,44 @@
+{% extends 'layouts/wrapper.html' %}
+{% block content %}
+
+<div class="col-md-12">
+    <a href="/media/add" class="btn btn-default pull-right">Enviar fotos</a>
+</div>
+<br/>
+<br/>
+<br/>
+
+
+{% for item in medias.items%}
+<div class="col-md-4">
+  <div class="box box-widget">
+    <div class="box-header with-border">
+      <div class="user-block">
+        <span class="description">{{item.created_at}}</span>
+      </div>
+      <div class="box-tools">
+        <a href="/media/edit/{{item.id}}">
+            <i class="fa fa-pencil"></i>
+        </a>
+        <a href="/media/delete/{{item.id}}">
+            <i class="fa fa-trash"></i>
+        </a>
+
+        <a href="/media/publish/{{item.id}}">
+            <i class="fa fa-eye"></i>
+        </a>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <img class="img-responsive pad" src="/uploads/{{item.file}}" alt="Photo">
+
+      <p>I took this photo this morning. What do you guys think?</p>
+      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+      <span class="pull-right text-muted">127 likes - 3 comments</span>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

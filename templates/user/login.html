@@ -1,0 +1,51 @@
+{% extends 'layouts/public.html' %}
+
+{% block content %}
+<div class="login-box">
+  <div class="login-logo">
+    <a href="/">Stock<b>Images</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Preencha seus dados</p>
+
+    <form action="/login" method="post">
+      {{ form.csrf_token }}
+
+
+      <div class="form-group has-feedback">
+
+        {{ form.email(id="username",class="form-control",placeholder="Email", required="disable") }}
+          {% if form.errors %}
+            <ul class=errors>
+            {% for error in form.errors %}
+              <li>{{ error }} - {{ form.errors[error] }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+
+        {{ form.password(id="password",class="form-control",placeholder="Senha",required="disable") }}
+
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-flat">Entrar</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+
+    <a href="/lostpassword">Esqueci senha</a><br>
+    <a href="/register" class="text-center">Cadastrar</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+{% endblock %}

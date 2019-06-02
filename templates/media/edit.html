@@ -1,0 +1,57 @@
+{% extends 'layouts/wrapper.html' %}
+
+{% block content %}
+
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Cadastrar nova media</h3>
+  </div>
+
+  <form action="/media/add" role="form" method="POST">
+       {{ form.csrf_token }}
+       <div class="box-body">
+            <div class="form-group has-feedback">
+
+              {% if form.errors %}
+                <ul class=errors>
+                {% for error in form.errors %}
+                  <li>{{ error }} - {{ form.errors[error] }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+          </div>
+
+          <div class="form-group">
+            <label for="name">Titulo da media</label>
+            {{ form.name(id='name', class="form-control", placeholder="Nome do cliente") }}
+          </div>
+
+          <div class="form-group">
+            <label for="file">Arquivo da media</label>
+            {{ form.file(id='file', class="form-control", placeholder="Media") }}
+          </div>
+
+          <div class="checkbox">
+            <label for="file">
+                {{ form.vertical(id='vertical') }}
+                O arquivo é vertical?
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="client">Categoria</label>
+            <p>Selecione as categorias</p>
+            {{form.category(id="category", class="form-control")}}
+          </div>
+
+
+       </div>
+
+        <div class="box-footer">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+  </form>
+
+</div>
+
+{% endblock %}
