@@ -1,6 +1,6 @@
 # StockImages
 
-This project starts from an ertdesejo to build something relevant and that is open source
+
 
 # Tech
   - [Flask] - Framework web
