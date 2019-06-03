@@ -1,0 +1,62 @@
+import flask
+from flask_login import current_user, login_required
+from flask_sqlalchemy import Pagination
+
+from app import app, lm, db
+from flask import render_template, redirect, request, url_for, flash, abort
+
+from config import PER_PAGE
+from forms.formuser import LoginForm
+from models import User
+from models.Media import Media
+
+
+class SearchController:
+
+    @app.route("/")
+    def home():
+
+        return redirect('/search')
+
+        # form = LoginForm()
+        #
+        # if current_user.is_authenticated:
+        #     redirect(url_for('search'))
+        # else:
+        #     redirect('/user/login')
+        # return render_template('search/index.html', form = form)
+
+
+    @app.route('/search', defaults={'type':None }, methods=["GET"])
+    @app.route('/search/<string:type>', methods=["GET"])
+    def search(type):
+        query = Media.query
+
+        if type is not None and current_user.is_anonymous:
+            abort(401)
+
+        if type is None:
+            query = query.filter(Media.is_public == True)
+
+        if 'name' in request.args:
+            query = query.filter(Media.name.like("%{}%".format(request.args.get('name'))))
+
+        if 'category' in request.args:
+            query = query.filter(Media.category_id == request.args.get('category'))
+
+        if 'resolution' in request.args:
+            query = query.filter(Media.resolution.contains(request.args.get('resolution')))
+
+        if 'owner' in request.args and type is None:
+            query = query.filter(Media.user_id == request.args.get('owner'))
+        elif type is not None:
+            query = query.filter(Media.user_id == current_user.get_id())
+
+        if 'is_vertical' in request.args:
+            query = query.filter(Media.vertical == request.args.get('vertical'))
+
+        page = int(request.args.get("page")) if 'page' in request.args else 1;
+
+        medias = query.paginate(page,PER_PAGE)
+
+        return render_template('search/index.html', medias = query.paginate(page,PER_PAGE))
