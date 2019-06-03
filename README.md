@@ -7,9 +7,6 @@ This project starts from an ertdesejo to build something relevant and that is op
   - [AdminLte] - Template based bootstrap
   - [DropZone] - Component for upload images
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
 ### Installation
 Install the dependencies and devDependencies and start the server.
 - Create you virtualenv with python 3.7
