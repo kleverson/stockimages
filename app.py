@@ -17,7 +17,7 @@ migrate = Migrate(app, db)
 
 lm.init_app(app)
 
-from controllers import home, auth, media
+from controllers import error, search, auth, media
 
 @app.before_request
 def before_request():

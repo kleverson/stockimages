@@ -37,13 +37,13 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-            {% if current_user.is_autenticate %}
+            {% if current_user.is_authenticated %}
               <ul class="nav navbar-nav pull-left">
                 <li>
-                    <a href="/media/my">Minhas fotos</a>
+                    <a href="/search/my">Minhas fotos</a>
                 </li>
                 <li>
-                    <a href="/media/favorite">Favoritas</a>
+                    <a href="/search/favorite">Favoritas</a>
                 </li>
               </ul>
               {% endif %}
@@ -163,6 +163,8 @@
     {% endwith %}
 
     <section class="content">
+      {% block form %}
+      {% endblock %}
       <div class="box-body">
         {% block content %}
         {% endblock %}
@@ -172,7 +174,7 @@
 
   <script type="text/javascript" src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
+  <script type="text/javascript" src="{{ url_for('static', filename='bower_components/fastclick/lib/fastclick.js') }}"></script>
  {% block scripts%}{% endblock %}
 </body>
 </html>

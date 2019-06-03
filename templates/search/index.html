@@ -1,13 +1,19 @@
 {% extends 'layouts/wrapper.html' %}
-{% block content %}
 
+
+{% block content %}
+{% if current_user.is_authenticated %}
 <div class="col-md-12">
     <a href="/media/add" class="btn btn-default pull-right">Enviar fotos</a>
 </div>
 <br/>
 <br/>
 <br/>
+{% endif %}
 
+<div class="col-md-12">
+{% include 'search/form.html' %}
+</div>
 
 {% for item in medias.items%}
 <div class="col-md-4">
@@ -31,7 +37,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <img class="img-responsive pad" src="/uploads/{{item.file}}" alt="Photo">
+      <img class="img-responsive pad" src="/uploads/thumbs/{{item.file}}" alt="Photo">
 
       <p>I took this photo this morning. What do you guys think?</p>
       <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>

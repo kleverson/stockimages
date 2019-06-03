@@ -1,0 +1,40 @@
+<div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Busca</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+       <form role="form" action="{{formaction}}" method="get">
+      <div class="row">
+        <div class="col-md-4">
+            <label for="term">Por termo</label>
+            {{ form.name(id='term',class="form-control", placeholder="Digite o termo de busca") }}
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="client">Categoria</label>
+            {{form.category(id="category", class="form-control", default="Selecione um valor")}}
+          </div>
+          <!-- /.form-group -->
+
+        </div>
+        <!-- /.col -->
+        <div class="col-md-2">
+          <p><strong>Fotos verticais</strong></p>
+          <div class="checkbox">
+            <label for="file">
+                {{ form.vertical(id='vertical') }}
+                O arquivo é vertical?
+            </label>
+          </div>
+        </div>
+
+        <!-- /.col -->
+      </div>
+
+      <button type="submit" class="btn btn-primary pull-right">Buscar</button>
+      <!-- /.row -->
+    </div>
+    </form>
+</div>

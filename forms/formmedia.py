@@ -10,5 +10,10 @@ class FormMediaAdd(FlaskForm):
     file = FileField("file")
     vertical = BooleanField("vertical")
     tag = StringField('tag')
-    # category =  SelectField('category', choices=[(c.id, c.name) for c in Category.query.order_by(Category.name.asc()).all()], coerce=int)
+    category =  SelectField('category', choices=[(c.id, c.name) for c in Category.query.order_by(Category.name.asc()).all()], coerce=int)
+
+class FormSearchMedia(FlaskForm):
+    name = StringField('term')
+    category = SelectField('category',choices=[(c.id, c.name) for c in Category.query.order_by(Category.name.asc()).all()], coerce=int, default=21)
+    vertical = BooleanField("vertical")
 
